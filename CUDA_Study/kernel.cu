@@ -12,7 +12,7 @@ int main()
 	dim3 block(8, 2, 1);
 	dim3 grid(nx / block.x, ny / block.y, 1);
 
-	print_thread_id << < grid, block>> > ();
+	print_thread_variables << < grid, block>> > ();
 
 	cudaDeviceSynchronize();
 

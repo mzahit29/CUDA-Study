@@ -2,3 +2,4 @@
 
 __global__ void hello_cuda();
 __global__ void print_thread_id();
+__global__ void print_thread_variables();
