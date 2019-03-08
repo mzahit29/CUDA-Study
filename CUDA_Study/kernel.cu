@@ -7,7 +7,10 @@
 int main()
 {
   
-	hello_cuda << <1, 4 >> > ();
+	dim3 block(2, 1, 1);  // 2 threads in x dimension per block
+	dim3 grid(4, 1, 1);  // 4 blocks in x dimension
+
+	hello_cuda << <grid, block >> > ();
 
 	cudaDeviceSynchronize();
 
