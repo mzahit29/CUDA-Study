@@ -26,3 +26,13 @@ __global__ void print_thread_variables()
 		gridDim.x, gridDim.y, gridDim.z
 		);
 }
+
+__global__ void print_unique_thread_id_1D()
+{
+	int tid = blockIdx.x * blockDim.x + threadIdx.x;
+
+	printf("Thread{%d,%d,%d}, Block{%d,%d,%d}, tid{%d}\n",
+		threadIdx.x, threadIdx.y, threadIdx.z,
+		blockIdx.x, blockIdx.y, blockIdx.z,
+		tid);
+}

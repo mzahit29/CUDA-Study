@@ -8,11 +8,11 @@ int main()
 {
   
 	int nx{16};
-	int ny{4};
-	dim3 block(8, 2, 1);
+	int ny{1};
+	dim3 block(8, 1, 1);
 	dim3 grid(nx / block.x, ny / block.y, 1);
 
-	print_thread_variables << < grid, block>> > ();
+	print_unique_thread_id_1D << < grid, block>> > ();
 
 	cudaDeviceSynchronize();
 
