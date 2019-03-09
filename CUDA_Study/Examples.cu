@@ -36,3 +36,20 @@ __global__ void print_unique_thread_id_1D()
 		blockIdx.x, blockIdx.y, blockIdx.z,
 		tid);
 }
+
+__global__ void print_unique_thread_id_3D(int * data)
+{
+	int thread_count_in_block = blockDim.x * blockDim.y * blockDim.z;
+	
+	// Inside a block, threads access consecutive elements of array
+	// (for z=0) 0 1  (for z=1) 4 5
+	//           2 3            6 7
+	int tid_in_block = blockDim.x * blockDim.y * threadIdx.z + blockDim.x * threadIdx.y + threadIdx.x;
+
+	int bid_in_grid = gridDim.x * gridDim.y * blockIdx.z + gridDim.x * blockIdx.y + blockIdx.x;
+
+	
+	int gid = bid_in_grid * thread_count_in_block + tid_in_block;
+
+	printf("gid{%d}, data[%d] = %d\n", gid, gid, data[gid]);
+}
